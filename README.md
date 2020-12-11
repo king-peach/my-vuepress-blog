@@ -4,7 +4,7 @@
 
 ### vuepress operation
 
-- **development run command:** _yarn run docs:dev_
-- **production run command:** _yarn run docs:build_
+- **development environment run command:** _yarn run docs:dev_
+- **production environment run command:** _yarn run docs:build_
 
 After build, you should double-click the **deploy.sh** file to deploy
