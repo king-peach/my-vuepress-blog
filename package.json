@@ -1,0 +1,16 @@
+{
+  "name": "vue-press-demo",
+  "version": "1.0.0",
+  "description": "this is a demo for test vue-press",
+  "main": "main.js",
+  "author": "king-peach",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "vuepress": "^1.7.1"
+  },
+  "scripts": {
+    "docs:dev": "vuepress dev docs --temp .temp",
+    "docs:build": "vuepress build docs"
+  }
+}
