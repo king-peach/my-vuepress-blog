@@ -9,7 +9,7 @@ module.exports = {
 			{
 				text: '前端相关',
 				items: [
-					{ text: 'javaScript', link: '/guide/javaScript/' },
+					{ text: 'javaScript', link: '/guide/javaScript/main' },
 					{ text: '正则表达式', link: '/guide/regexp/' },
 				],
 			},
@@ -21,13 +21,11 @@ module.exports = {
 			'/guide/': [
 				{
 					title: 'javaScript',
-					path: '/guide/javaScript/',
-					children: ['/guide/javaScript/modules'],
+					children: ['/guide/javaScript/main', '/guide/javaScript/modules'],
 				},
 				{
 					title: '正则表达式',
-					path: '/guide/regexp/',
-					children: ['/guide/regexp/exec'],
+					children: ['/guide/regexp/', '/guide/regexp/exec'],
 				},
 			],
 			'/personal/': ['/personal/'],

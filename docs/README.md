@@ -4,11 +4,11 @@ heroImage: /blog.png
 heroText: 临渊羡鱼，不如退而结网
 tagline: 记录一些问题和疑难点
 features:
-  - title: 简洁至上
-    details: 以 Markdown 为中心的项目结构，以最少的配置帮助你专注于写作。
-  - title: Vue驱动
-    details: 享受 Vue + webpack 的开发体验，在 Markdown 中使用 Vue 组件，同时可以使用 Vue 来开发自定义主题。
-  - title: 高性能
-    details: VuePress 为每个页面预渲染生成静态的 HTML，同时在页面被加载的时候，将作为 SPA 运行。
+  - title: 业精于勤疏于嬉,行成于思毁于随
+    details: 保持关注行业知识和见闻, 编码在于不断的coding,对于出现的问题要独立思考,不可照抄临摹
+  - title: 强身健体,增强体魄
+    details: 身体是革命的本钱,健康的身体可以支持自己走更远更长的路
+  - title: 志正则众邪不正
+    details: 立下目标以后应该坚定不移的去完成,不受周边的任何环境影响
 footer: MIT Licensed | Copyright © 2018-present Evan You
 ---
