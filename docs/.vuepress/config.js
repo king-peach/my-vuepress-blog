@@ -15,7 +15,7 @@ module.exports = {
 			},
 			{ text: '关于我的', link: '/personal/' },
 		],
-		lastUpdated: '更新时间：',
+		lastUpdated: '更新时间',
 		displayAllHeaders: true,
 		sidebar: {
 			'/guide/': [
@@ -35,4 +35,5 @@ module.exports = {
 		lineNumbers: true,
 	},
 	permalink: '/:year/:month/:day/:slug',
+	plugins: ['@vuepress/back-to-top'],
 };
