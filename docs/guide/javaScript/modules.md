@@ -396,8 +396,69 @@ UMD 是一个整合了 CommonJS 和 AMD 规范的方法。希望能实现一种�
 });
 ```
 
+## ES Module
+
+在 ES6 之前，社区制定了一些模块加载方案，最主要的有 CommonJS 和 AMD 两种。前者用于服务端，后者用于客户端。ES6 在语言标准层面上，实现了模块功能，而且实现地相当简单，完全可以取代 CommonJS 和 AMD 规范，成为浏览器和服务器通用的模块解决方案。
+
+ES Module 的设计思想是尽量的模块化，使得编译时就能确定模块的依赖关系，以及输入和输出的变量。CommonJS 和 AMD 模块，都只能在运行时进行分析。比如，CommonJS 模块就是对象，输入时必须查找对象属性。
+
+```js
+// CommonJS模块
+let { stat, exists, readfile } = require('fs');
+
+// 等价于
+let _fs = require('fs');
+let stat = _fs.stat;
+let exists = _fs.exists;
+let readfile = _fs.readfile;
+```
+
+上面代码的实质是整体加载 fs 模块（即加载 fs 的所有方法），生成一个对象（\_fs），然后再从这个对象上面读取这三个方法。这种加载成为“运行时加载”，因为只有运行时才能得到这个对象，导致完全没办法在编译时做“静态优化”。
+
+ES Module 不是对象，而是通过`export`命令显式指定输出的代码，再通过`import`命令输入。
+
+```js
+// ES Module
+import { stat, exists, readfile } from 'fs';
+```
+
+上面的代码实质是从 fs 模块加载 3 个方法，其他方法不加载。这种加载方式成为“编译时加载”或“静态加载”，即 ES Module 可以在编译时就完成模块加载，效率要比 CommonJS 模块加载的方式高级。当然这也导致了没法引用 ES Module 本身，因为它不是对象。
+
+由于 ES Module 是编译时加载，使得静态分析成为可能。有了它，就能进一步拓宽 JavaScript 的语法，比如引入宏（macro）和类型检查（type system）这些只能靠静态分析实现的功能。
+
+除了静态加载带来的好处，ES Module 模块还有以下好处。
+
+- 不再需要 UMD 模块格式了，将来服务器和浏览器都会支持 ES Module 格式。目前，通过工具库已经可以实现这一点了。
+- 将来浏览器的新 API 就能用模块格式提供，不再必须做成全局变量或者`navigator`对象的属性。
+- 不再需要对象作为命名空间（比如`Math`对象），未来这些功能可以通过模块提供
+
+ES Module 自动采用严格模式，不管你有没有在模块头部加上`"use strict"`。
+
+#### 严格模式
+
+严格模式主要有一下限制：
+
+- 变量必须声明后使用
+- 函数的参数不能有同名属性，否则报错
+- 不能使用`with`语句
+- 不能对只读属性赋值，否则报错
+- 不能使用前缀 0 表示八进制数，否则报错
+- 不能删除不可删除的属性，否则报错
+- 不能删除变量`delete prop`，会报错，只能删除属性`delete global[prop]`
+- `eval`不会在它的外层作用域引入变量
+- `eval`和`arguments`不能被重新赋值
+- `arguments`不会自动反映函数参数的变化
+- 不能使用`arguments.caller`
+- 不能使用`arguments.callee`
+- 禁止`this`指向全局对象
+- 不能使用`fn.caller`和`fn.arguments`获取函数调用的堆栈
+- 增加了保留字（比如`protected`、`static`和`interface`）
+
+上面这些限制，ES Module 都必须遵守。其中，尤其需要注意的是`this`的限制。ES6 模块之中，顶层的`this`指向`undefined`，即不应该在顶层作用域中使用`this`。
+
 ### 参考内容
 
 [1] ruanyifeng， [Javascript 模块化编程（一）：模块的写法](http://www.ruanyifeng.com/blog/2012/10/javascript_module.html)<br/>
 [2] 合肥懒皮， [模块(一) CommonJs,AMD, CMD, UMD](https://www.jianshu.com/p/33d53cce8237)  
-[3] ruanyifeng，[Javascript 模块化编程（三）：require.js 的用法](http://www.ruanyifeng.com/blog/2012/11/require_js.html)
+[3] ruanyifeng，[Javascript 模块化编程（三）：require.js 的用法](http://www.ruanyifeng.com/blog/2012/11/require_js.html)  
+[4] ruanyifeng，[ECMAScript 6 入门： Module 的语法](https://es6.ruanyifeng.com/#docs/module)

@@ -21,7 +21,7 @@ module.exports = {
 			'/guide/': [
 				{
 					title: 'javaScript',
-					children: ['/guide/javaScript/main', '/guide/javaScript/modules'],
+					children: ['/guide/javaScript/main', '/guide/javaScript/variable', '/guide/javaScript/modules', '/guide/javaScript/hacker-9', '/guide/javaScript/argumentsFunc'],
 				},
 				{
 					title: '正则表达式',
